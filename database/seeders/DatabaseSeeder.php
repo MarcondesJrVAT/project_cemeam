@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
 
         $this->attachPermissionsToRoles();
         $this->attachRolesToUsers();
-
-        User::factory(10)->create();
     }
 
     private function createRoles(): void
