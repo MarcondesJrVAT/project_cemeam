@@ -52,5 +52,20 @@
         @livewire('admin.components.footer')
         @livewire('components.dark-mode')
         @livewireScripts
+        <script>
+            const alert = document.getElementById('alert');
+            function closeAlert() {
+                if (alert) {
+                    alert.classList.add('transition', 'ease-in-out', 'duration-500', 'opacity-0');
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 500);
+                }
+            }
+            if (alert) {
+                const timeout = 5000; //5 segundos
+                setTimeout(closeAlert, timeout);
+            }
+        </script>
     </body>
 </html>
