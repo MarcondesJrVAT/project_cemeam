@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -25,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
             }
         }
 
-        Gate::before(static function ($user, $permission) {
-            if ($user->permissions->contains('slug', $permission)) {
+        Gate::before(static function (User $user, $permission) {
+            if ($user->permissions()->contains($permission)) {
                 return true;
             }
             return null;
