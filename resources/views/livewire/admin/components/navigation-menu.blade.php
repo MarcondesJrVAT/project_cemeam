@@ -31,15 +31,13 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="{{ route('admin.users') }}">
+                            <x-dropdown-link href="{{ route('admin.users.index') }}">
                                 {{ __('Usuários') }}
                             </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('admin.permissions') }}">
+                            <x-dropdown-link href="{{ route('admin.permissions.index') }}">
                                 {{ __('Permissões') }}
                             </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('admin.roles') }}">
+                            <x-dropdown-link href="{{ route('admin.roles.index') }}">
                                 {{ __('Funções') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -96,28 +94,28 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="{{ route('admin.dashboard') }}">
-                                {{ __('Anos Letivos') }}
-                            </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('admin.dashboard') }}">
-                                {{ __('Aulas') }}
-                            </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('admin.dashboard') }}">
-                                {{ __('Categorias') }}
-                            </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('admin.dashboard') }}">
-                                {{ __('Componentes Curriculares') }}
-                            </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('admin.dashboard') }}">
+                            <x-dropdown-link href="{{ route('admin.lms.courses.index') }}">
                                 {{ __('Cursos') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link href="{{ route('admin.dashboard') }}">
+                            <x-dropdown-link href="{{ route('admin.lms.categories.index') }}">
+                                {{ __('Categorias') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('admin.lms.grades.index') }}">
                                 {{ __('Séries') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('admin.lms.subjects.index') }}">
+                                {{ __('Componentes Curriculares') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('admin.lms.years.index') }}">
+                                {{ __('Anos Letivos') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('admin.lms.lessons.index') }}">
+                                {{ __('Aulas') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -271,17 +269,17 @@
                 </summary>
                 <ul class="mt-2 space-y-1 px-4">
                     <li>
-                        <a href="{{ route('admin.users') }}" class="block px-4 py-2 border-l-4 border-transparent border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.users.index') }}" class="block px-4 py-2 border-l-4 border-transparent border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Lista de Usuários') }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.permissions') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.permissions.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Permissões') }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.roles') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.roles.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Funções') }}
                         </a>
                     </li>
@@ -333,32 +331,32 @@
                 </summary>
                 <ul class="mt-2 space-y-1 px-4">
                     <li>
-                        <a href="#" class="block px-4 py-2 border-l-4 border-transparent border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.lms.courses.index') }}" class="block px-4 py-2 border-l-4 border-transparent border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Cursos') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.lms.categories.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Categorias') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.lms.grades.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Séries') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.lms.subjects.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Componentes') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.lms.years.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Anos Letivos') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
+                        <a href="{{ route('admin.lms.lessons.index') }}" class="block px-4 py-2 border-l-4 border-transparent text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out flex cursor-pointer items-center justify-between">
                             {{ __('Aulas') }}
                         </a>
                     </li>
