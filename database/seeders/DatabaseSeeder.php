@@ -6,6 +6,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\DetailsFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -65,14 +66,17 @@ class DatabaseSeeder extends Seeder
 
     private function createUsers(): void
     {
-        User::create(['name' => 'Super', 'email' => 'super@super.com', 'password' => bcrypt('supersuper')]);
-        sleep(1);
-        User::create(['name' => 'Admin', 'email' => 'admin@admin.com', 'password' => bcrypt('adminadmin')]);
-        sleep(1);
-        User::create(['name' => 'Author', 'email' => 'author@author.com', 'password' => bcrypt('authorauthor')]);
-        sleep(1);
-        User::create(['name' => 'User', 'email' => 'user@user.com', 'password' => bcrypt('useruser')]);
-        sleep(1);
+        $users = [
+            ['name' => 'Super', 'email' => 'super@super.com', 'password' => bcrypt('supersuper')],
+            ['name' => 'Admin', 'email' => 'admin@admin.com', 'password' => bcrypt('adminadmin')],
+            ['name' => 'Author', 'email' => 'author@author.com', 'password' => bcrypt('authorauthor')],
+            ['name' => 'User', 'email' => 'user@user.com', 'password' => bcrypt('useruser')],
+        ];
+        foreach ($users as $userData) {
+            $user = User::create($userData);
+            $user->details()->create(DetailsFactory::new()->definition());
+            sleep(1);
+        }
     }
 
     private function attachPermissionsToRoles(): void
