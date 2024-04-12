@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -19,6 +20,8 @@ class DatabaseSeeder extends Seeder
 
         $this->attachPermissionsToRoles();
         $this->attachRolesToUsers();
+
+        Department::factory()->count(50)->create();
     }
 
     private function createRoles(): void
