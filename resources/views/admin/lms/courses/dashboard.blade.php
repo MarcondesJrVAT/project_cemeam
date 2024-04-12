@@ -90,9 +90,13 @@
                                                             </span>
                                                         @endif
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-normal text-sm text-gray-800 dark:text-gray-200">000 Aulas</td>
+                                                    <td class="px-6 py-4 whitespace-normal text-sm text-gray-800 dark:text-gray-200">
+                                                        {{ $course->lessons->count() }}
+                                                    </td>
                                                     <td class="px-6 py-4 whitespace-normal text-sm text-gray-800 dark:text-gray-200">000 Anexos</td>
-                                                    <td class="px-6 py-4 whitespace-normal text-sm text-gray-800 dark:text-gray-200">000 Séries</td>
+                                                    <td class="px-6 py-4 whitespace-normal text-sm text-gray-800 dark:text-gray-200">
+                                                        {{ $course->grades->count() }}
+                                                    </td>
                                                     <td class="flex justify-end px-6 py-4 space-x-1 whitespace-normal text-sm font-medium">
                                                         <a href="{{ route('admin.lms.courses.show', $course->id) }}" type="button" class="text-blue-500" title="Detalhes de {{ $course->title }}">
                                                             <x-icons.eye aria-hidden="true" />
