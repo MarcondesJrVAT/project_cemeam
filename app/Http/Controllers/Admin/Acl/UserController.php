@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Acl;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -13,10 +14,12 @@ class UserController extends Controller
 {
     public readonly User $user;
     public readonly Role $role;
+    public readonly Department $department;
     public function __construct()
     {
         $this->user = new User();
         $this->role = new Role();
+        $this->department = new Department();
     }
 
     public function index(): View
@@ -31,7 +34,8 @@ class UserController extends Controller
     public function create(): View
     {
         $roles = $this->role->all();
-        return view('admin.acl.users.partials.create', compact('roles'));
+        $departments = $this->department->all();
+        return view('admin.acl.users.partials.create', compact('roles', 'departments'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -43,6 +47,8 @@ class UserController extends Controller
             'roles' => 'required|array',
             'roles.*' => 'exists:roles,id',
             'status' => 'required|boolean',
+            'departments' => 'nullable|array',
+            'departments.*' => 'exists:departments,id',
             'about' => 'nullable|string',
             'website' => 'nullable|string',
             'lattes' => 'nullable|string',
@@ -66,6 +72,8 @@ class UserController extends Controller
             'roles.*.exists' => 'Uma ou mais funções selecionadas não existem.',
             'status.required' => 'O campo status é obrigatório.',
             'status.boolean' => 'O campo status deve ser um booleano.',
+            'departments.array' => 'O campo departamentos deve ser um array.',
+            'departments.*.exists' => 'Um ou mais departamentos selecionados não existem.',
             'about.string' => 'O campo sobre deve ser uma string.',
             'website.string' => 'O campo website deve ser uma string.',
             'lattes.string' => 'O campo lattes deve ser uma string.',
@@ -83,6 +91,7 @@ class UserController extends Controller
         ]);
 
         $user->roles()->sync($validatedData['roles']);
+        $user->departments()->sync($validatedData['departments']);
 
         $user->details()->create([
             'status' => $validatedData['status'],
@@ -102,7 +111,7 @@ class UserController extends Controller
     public function show(string $id): View
     {
         $user = $this->user->query()
-            ->with(['roles', 'details'])
+            ->with(['roles', 'details', 'departments'])
             ->findOrFail($id);
         return view('admin.acl.users.partials.show', compact('user'));
     }
@@ -110,10 +119,11 @@ class UserController extends Controller
     public function edit(string $id): View
     {
         $user = $this->user->query()
-            ->with(['roles', 'details'])
+            ->with(['roles', 'details', 'departments'])
             ->findOrFail($id);
         $roles = $this->role->all();
-        return view('admin.acl.users.partials.edit', compact('user', 'roles'));
+        $departments = $this->department->all();
+        return view('admin.acl.users.partials.edit', compact('user', 'roles', 'departments'));
     }
 
     public function update(Request $request, string $id): RedirectResponse
@@ -125,6 +135,8 @@ class UserController extends Controller
             'roles' => 'required|array',
             'roles.*' => 'exists:roles,id',
             'status' => 'required|boolean',
+            'departments' => 'nullable|array',
+            'departments.*' => 'exists:departments,id',
             'about' => 'nullable|string',
             'website' => 'nullable|string',
             'lattes' => 'nullable|string',
@@ -147,6 +159,8 @@ class UserController extends Controller
             'roles.*.exists' => 'Uma ou mais funções selecionadas não existem.',
             'status.required' => 'O campo status é obrigatório.',
             'status.boolean' => 'O campo status deve ser um booleano.',
+            'departments.array' => 'O campo departamentos deve ser um array.',
+            'departments.*.exists' => 'Um ou mais departamentos selecionados não existem.',
             'about.string' => 'O campo sobre deve ser uma string.',
             'website.string' => 'O campo website deve ser uma string.',
             'lattes.string' => 'O campo lattes deve ser uma string.',
@@ -166,6 +180,7 @@ class UserController extends Controller
         ]);
 
         $user->roles()->sync($validatedData['roles']);
+        $user->departments()->sync($validatedData['departments']);
 
         $user->details()->update([
             'status' => $validatedData['status'],
@@ -185,6 +200,9 @@ class UserController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $user = $this->user->findOrFail($id);
+        if($user->lessons()->exists()) {
+            return redirect()->route('admin.users.index')->with('error', 'Este usuário está vinculado a uma ou mais aulas.');
+        }
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'Usuário removido com sucesso!');
