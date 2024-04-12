@@ -113,4 +113,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Lesson::class, 'lesson_user', 'teacher_id', 'lesson_id');
     }
+
+    public function responsibleDepartments(): HasMany
+    {
+        return $this->hasMany(Department::class, 'responsible_id');
+    }
+
+    public function departments(): BelongsToMany
+    {
+        return $this->belongsToMany(Department::class);
+    }
 }
