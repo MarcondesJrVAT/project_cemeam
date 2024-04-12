@@ -5,16 +5,24 @@
         </h2>
     </x-slot>
     @livewire('admin.components.alerts')
-    <div class="py-12">
+    <div class="py-2">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div class="flex flex-col">
                         <div class="-m-1.5 overflow-x-auto">
                             <div class="p-1.5 min-w-full inline-block align-middle">
-                                <div class="border rounded-lg divide-y divide-gray-200 border dark:border-gray-500">
-                                    <div class="flex items">
-                                        <div class="py-3 px-4 w-1/2 text-start">
+                                <div class="border rounded-lg divide-y divide-gray-400 border dark:border-gray-600">
+                                    <div class="flex">
+                                        <div class="w-fit py-2 px-2 w-1/2 text-start">
+                                            <div class="relative max-w">
+                                                <a href="{{ route('admin.users.create') }}" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" wire:click="createUser">
+                                                    <x-icons.plus-circle aria-hidden="true" />
+                                                    <span class="ms-2">Novo Usuário</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="w-fit py-2 px-2 w-1/2 text-start">
                                             <div class="relative max-w-xs sr-only">
                                                 <label class="sr-only">Search</label>
                                                 <input type="text" wire:model="search" placeholder="Pesquisar Usuários..." class="py-2 px-3 ps-9 block w-full dark:bg-gray-800 border-gray-200 dark:border-gray-500 shadow-sm rounded-lg dark:text-gray-200 focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Search for items">
@@ -26,19 +34,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="py-3 px-4 w-1/2 text-end">
-                                            <div class="relative max-w">
-                                                <a href="{{ route('admin.users.create') }}" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" wire:click="createUser">
-                                                    <x-icons.plus-circle aria-hidden="true" />
-                                                    <span class="ms-2">Adicionar Usuário</span>
-                                                </a>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="overflow-hidden">
 
                                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
-                                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                            <thead class="bg-gray-300 dark:bg-gray-900">
                                             <tr>
                                                 <th scope="col" class="py-3 px-4 pe-0">
                                                     <div class="flex items-center h-5">
@@ -51,7 +51,7 @@
                                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 dark:text-gray-200 uppercase">Email</th>
                                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 dark:text-gray-200 uppercase">Sobre</th>
                                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 dark:text-gray-200 uppercase">Funções</th>
-                                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase">Ações</th>
+                                                <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 dark:text-gray-200 uppercase">Ações</th>
                                             </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-200">
