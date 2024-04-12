@@ -15,4 +15,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     require __DIR__ . '/admin/acl/roles.php';
     require __DIR__ . '/admin/acl/users.php';
     require __DIR__ . '/admin/lms.php';
+    require __DIR__ . '/admin/departments.php';
 });
