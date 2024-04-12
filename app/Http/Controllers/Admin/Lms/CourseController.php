@@ -23,7 +23,10 @@ class CourseController extends Controller
 
     public function index(): View
     {
-        $courses = $this->course->orderByDesc('created_at')->paginate(10);
+        $courses = $this->course->query()
+            ->with('lessons')
+            ->orderByDesc('created_at')
+            ->paginate(10);
         return view('admin.lms.courses.dashboard', compact('courses'));
     }
 
