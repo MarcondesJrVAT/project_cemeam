@@ -20,7 +20,7 @@
                                 <p class="mt-1 block w-full rounded-lg dark:bg-gray-900 dark:text-gray-200 p-3 text-sm cursor-not-allowed">{{ $user->email }}</p>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                             <div>
                                 <label class="dark:text-gray-200" for="roles">Funções</label>
                                 <ul class="mt-1 block w-full rounded-lg dark:bg-gray-900 dark:text-gray-200 p-3 text-sm cursor-not-allowed">
@@ -32,6 +32,14 @@
                             <div>
                                 <label class="dark:text-gray-200" for="status">Status</label>
                                 <p class="mt-1 block w-full rounded-lg dark:bg-gray-900 dark:text-gray-200 p-3 text-sm cursor-not-allowed">{{ $user->details->status ? 'Ativo' : 'Inativo' }}</p>
+                            </div>
+                            <div>
+                                <label class="dark:text-gray-200" for="departments">Departamentos</label>
+                                <ul class="mt-1 block w-full rounded-lg dark:bg-gray-900 dark:text-gray-200 p-3 text-sm cursor-not-allowed">
+                                    @foreach($user->departments as $department)
+                                        <li>{{ $department->name }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                         <div>

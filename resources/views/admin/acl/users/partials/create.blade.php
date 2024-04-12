@@ -62,7 +62,7 @@
                                 @error('password')<span class="text-red-500 mt-2">{{ $message }}</span>@enderror
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 gap-4 md:text-center sm:grid-cols-2">
+                        <div class="grid grid-cols-1 gap-4 md:text-center sm:grid-cols-3">
                             <div>
                                 <label class="dark:text-gray-200" for="roles">Funções</label>
                                 <select
@@ -70,6 +70,7 @@
                                     id="roles"
                                     name="roles[]"
                                     required
+                                    multiple
                                 >
                                     <option value="" selected disabled>Selecione pelo menos uma função</option>
                                     @foreach($roles as $role)
@@ -77,7 +78,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
                             <div>
                                 <label class="dark:text-gray-200" for="status">Status</label>
                                 <select
@@ -88,6 +88,21 @@
                                 >
                                     <option value="1" selected>Ativo</option>
                                     <option value="0">Inativo</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="dark:text-gray-200" for="departments">Departamento(s)</label>
+                                <select
+                                    class="w-full rounded-lg focus:border-gray-200 dark:bg-gray-900 dark:text-gray-200 p-3 text-sm cursor-pointer"
+                                    id="departments"
+                                    name="departments[]"
+                                    required
+                                    multiple
+                                >
+                                    <option value="" selected disabled>Selecione pelo menos um departamento</option>
+                                    @foreach($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
