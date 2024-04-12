@@ -44,7 +44,7 @@
                     </x-dropdown>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link href="{{ route('admin.departments.index') }}" :active="request()->routeIs('admin.departments.index')">
                         {{ __('Departamentos') }}
                     </x-nav-link>
                 </div>
@@ -287,7 +287,7 @@
                     </li>
                 </ul>
             </details>
-            <x-responsive-nav-link href="{{ route('admin.dashboard') }}">
+            <x-responsive-nav-link href="{{ route('admin.departments.index') }}">
                 {{ __('Departamentos') }}
             </x-responsive-nav-link>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
