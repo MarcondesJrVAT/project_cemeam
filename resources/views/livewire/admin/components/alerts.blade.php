@@ -13,7 +13,7 @@
         </div>
     @endif
     @if (session()->has('error'))
-        <div id="alert" class="w-fit z-50 fixed top-16 right-1 left-1 md:right-5">
+        <div id="alert" class="w-fit z-50 fixed top-16 right-1 md:right-5">
             <div class="flex inline-flex justify-between bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-2 rounded-xl " role="alert">
                 <span class="block sm:inline pl-2">
                     <strong class="block font-medium text-red-600"> AVISO! </strong>
