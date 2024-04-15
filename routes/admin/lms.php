@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Lms\CategoryController;
 use App\Http\Controllers\Admin\Lms\CourseController;
 use App\Http\Controllers\Admin\Lms\GradeController;
+use App\Http\Controllers\Admin\Lms\LessonContentController;
 use App\Http\Controllers\Admin\Lms\LessonController;
 use App\Http\Controllers\Admin\Lms\SubjectController;
 use App\Http\Controllers\Admin\Lms\YearController;
@@ -74,5 +75,16 @@ Route::prefix('lms')->name('admin.lms.')->group(function ()
         Route::get('/editar-aula/{id}', [LessonController::class, 'edit'])->name('edit');
         Route::put('/editar-aula/{id}', [LessonController::class, 'update'])->name('update');
         Route::delete('/excluir-aula/{id}', [LessonController::class, 'destroy'])->name('destroy');
+
+        Route::prefix('{lesson}/conteudo')->name('contents.')->group(function ()
+        {
+            Route::get('/', [LessonContentController::class, 'index'])->name('index');
+            Route::get('/novo-conteudo', [LessonContentController::class, 'create'])->name('create');
+            Route::post('/novo-conteudo', [LessonContentController::class, 'store'])->name('store');
+            Route::get('/visualizar-conteudo/{content}', [LessonContentController::class, 'show'])->name('show');
+            Route::get('/editar-conteudo/{content}', [LessonContentController::class, 'edit'])->name('edit');
+            Route::put('/editar-conteudo/{content}', [LessonContentController::class, 'update'])->name('update');
+            Route::delete('/excluir-conteudo/{content}', [LessonContentController::class, 'destroy'])->name('destroy');
+        });
     });
 });
