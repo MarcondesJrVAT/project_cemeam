@@ -92,11 +92,13 @@ class LessonController extends Controller
             'tags.string' => 'O campo tags deve ser uma string.',
         ]);
 
+        Storage::makeDirectory('public/lms/lessons/' . $validatedData['code']);
+
         $image = $request->hasFile('image');
         if ($image) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/lms/lessons', $imageName);
+            $image->storeAs('public/lms/lessons/' . $validatedData['code'], $imageName);
             $validatedData['image'] = $imageName;
         }else{
             $validatedData['image'] = null;
@@ -121,14 +123,14 @@ class LessonController extends Controller
 
         $lesson->teachers()->attach($validatedData['teachers_id']);
 
-        return redirect()->route('admin.lms.lessons.index')->with('success', 'Aula criada com sucesso.');
-
+        return redirect()->route('admin.lms.lessons.show', ['id' => $lesson->id])->with('success', 'Aula criada com sucesso.');
     }
 
     public function show(string $id): View
     {
         $lesson = $this->lesson->query()->findOrFail($id);
-        return view('admin.lms.lessons.partials.show', compact('lesson'));
+        $contents = $lesson->contents()->orderByDesc('created_at')->paginate(10);
+        return view('admin.lms.lessons.partials.show', compact('lesson', 'contents'));
     }
 
     public function edit(string $id): View
@@ -190,14 +192,18 @@ class LessonController extends Controller
             'tags.string' => 'O campo tags deve ser uma string.',
         ]);
 
+        if ($lesson->code !== $validatedData['code']) {
+            Storage::move('public/lms/lessons/' . $lesson->code, 'public/lms/lessons/' . $validatedData['code']);
+        }
+
         $image = $request->hasFile('image');
         if ($image) {
             if ($lesson->image){
-                Storage::disk('public')->delete('lms/lessons/' . $lesson->image);
+                Storage::disk('public')->delete('lms/lessons/' . $validatedData['code'] . '/' . $lesson->image);
             }
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/lms/lessons', $imageName);
+            $image->storeAs('public/lms/lessons/' . $validatedData['code'], $imageName);
             $validatedData['image'] = $imageName;
         }else{
             $validatedData['image'] = $lesson->image;
@@ -220,13 +226,16 @@ class LessonController extends Controller
 
         $lesson->teachers()->sync($validatedData['teachers_id']);
 
-        return redirect()->route('admin.lms.lessons.index')->with('success', 'Aula atualizada com sucesso.');
+        return redirect()->route('admin.lms.lessons.show', ['id' => $lesson->id])->with('success', 'Aula atualizada com sucesso.');
     }
 
     public function destroy(string $id): RedirectResponse
     {
         $lesson = $this->lesson->findOrFail($id);
+
+        Storage::deleteDirectory('public/lms/lessons/' . $lesson->code);
+
         $lesson->delete();
-        return redirect()->route('admin.lms.lessons.index')->with('success', 'Aula deletada com sucesso.');
+        return redirect()->route('admin.lms.lessons.index')->with('success', 'Aula e conteúdo deletado com sucesso.');
     }
 }
