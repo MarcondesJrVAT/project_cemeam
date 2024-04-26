@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
+        @livewire('admin.components.alerts')
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="rounded-lg bg-white dark:bg-gray-800 p-8 shadow-lg lg:col-span-3 lg:p-12">
@@ -77,6 +78,7 @@
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('roles')<span class="text-red-500 mt-2">{{ $message }}</span>@enderror
                             </div>
                             <div>
                                 <label class="dark:text-gray-200" for="status">Status</label>
@@ -89,6 +91,7 @@
                                     <option value="1" selected>Ativo</option>
                                     <option value="0">Inativo</option>
                                 </select>
+                                @error('status')<span class="text-red-500 mt-2">{{ $message }}</span>@enderror
                             </div>
                             <div>
                                 <label class="dark:text-gray-200" for="departments">Departamento(s)</label>
@@ -104,6 +107,7 @@
                                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('departments')<span class="text-red-500 mt-2">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         <div>
@@ -115,6 +119,7 @@
                                 id="about"
                                 name="about"
                             ></textarea>
+                            @error('about')<span class="text-red-500 mt-2">{{ $message }}</span>@enderror
                         </div>
                         <hr>
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
