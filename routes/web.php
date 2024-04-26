@@ -3,9 +3,9 @@
 use App\Http\Controllers\Admin\PrincipalController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('site.dashboard');
-})->name('site.dashboard');
+//Route::get('/', function () {
+//    return view('site.dashboard');
+//})->name('site.dashboard');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function ()
 {
@@ -17,3 +17,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     require __DIR__ . '/admin/lms.php';
     require __DIR__ . '/admin/departments.php';
 });
+
+require __DIR__ . '/site/site.php';
