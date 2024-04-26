@@ -27,42 +27,41 @@ class DatabaseSeeder extends Seeder
     private function createRoles(): void
     {
         Role::create(['name' => 'Super Admin', 'slug' => 'super-admin']);
-        sleep(1);
         Role::create(['name' => 'Admin', 'slug' => 'admin']);
-        sleep(1);
+
         Role::create(['name' => 'Author', 'slug' => 'author']);
-        sleep(1);
+
         Role::create(['name' => 'User', 'slug' => 'user']);
     }
 
     private function createPermissions(): void
     {
         Permission::create(['name' => 'Create User', 'slug' => 'create-user']);
-        sleep(1);
+
         Permission::create(['name' => 'View User', 'slug' => 'view-user']);
-        sleep(1);
+
         Permission::create(['name' => 'Edit User', 'slug' => 'edit-user']);
-        sleep(1);
+
         Permission::create(['name' => 'Delete User', 'slug' => 'delete-user']);
-        sleep(1);
+
 
         Permission::create(['name' => 'Create Role', 'slug' => 'create-role']);
-        sleep(1);
+
         Permission::create(['name' => 'View Role', 'slug' => 'view-role']);
-        sleep(1);
+
         Permission::create(['name' => 'Edit Role', 'slug' => 'edit-role']);
-        sleep(1);
+
         Permission::create(['name' => 'Delete Role', 'slug' => 'delete-role']);
-        sleep(1);
+
 
         Permission::create(['name' => 'Create Permission', 'slug' => 'create-permission']);
-        sleep(1);
+
         Permission::create(['name' => 'View Permission', 'slug' => 'view-permission']);
-        sleep(1);
+
         Permission::create(['name' => 'Edit Permission', 'slug' => 'edit-permission']);
-        sleep(1);
+
         Permission::create(['name' => 'Delete Permission', 'slug' => 'delete-permission']);
-        sleep(1);
+
     }
 
     private function createUsers(): void
@@ -76,7 +75,7 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $userData) {
             $user = User::create($userData);
             $user->details()->create(DetailsFactory::new()->definition());
-            sleep(1);
+
         }
     }
 
