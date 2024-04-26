@@ -209,7 +209,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('site.dashboard') }}">
+                            <x-dropdown-link href="{{ route('site.home') }}">
                                 {{ __('Site') }}
                             </x-dropdown-link>
 
@@ -385,7 +385,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link href="{{ route('site.dashboard') }}">
+                <x-responsive-nav-link href="{{ route('site.home') }}">
                     {{ __('Site') }}
                 </x-responsive-nav-link>
                 <!-- Account Management -->
